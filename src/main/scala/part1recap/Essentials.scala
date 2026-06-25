@@ -1,10 +1,11 @@
 //noinspection TypeAnnotation,ScalaWeakerAccess
 package part1recap
 
-import java.util.concurrent.Executors
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Try
 import scala.util.{Failure, Success}
+
+import java.util.concurrent.Executors
 
 object Essentials {
 
@@ -47,21 +48,21 @@ object Essentials {
   val incremented = incrementer(45) // 결과: 46
 
   // map, flatMap, filter
-  val processedList = List(1,2,3).map(incrementer) // List(2,3,4)
-  val aLongerList = List(1,2,3).flatMap(x => List(x, x + 1)) // List(1,2, 2,3, 3,4)
+  val processedList = List(1, 2, 3).map(incrementer) // List(2,3,4)
+  val aLongerList = List(1, 2, 3).flatMap(x => List(x, x + 1)) // List(1,2, 2,3, 3,4)
 
   // for-comprehension
-  val checkerboard = List(1,2,3).flatMap(n => List('a', 'b', 'c').map(c => (n, c)))
+  val checkerboard = List(1, 2, 3).flatMap(n => List('a', 'b', 'c').map(c => (n, c)))
   val anotherCheckerboard = for {
-    n <- List(1, 2, 3)        // flatMap으로 변환됨
-    c <- List('a', 'b', 'c')  // map으로 변환됨
+    n <- List(1, 2, 3) // flatMap으로 변환됨
+    c <- List('a', 'b', 'c') // map으로 변환됨
   } yield (n, c) // 위와 같은 표현식
 
   // Option과 Try
-  val anOption: Option[Int] = Option(/* null일 수도 있는 값 */ 3) // Some(3)
+  val anOption: Option[Int] = Option( /* null일 수도 있는 값 */ 3) // Some(3)
   val doubleOption: Option[Int] = anOption.map(_ * 2)
 
-  val anAttempt: Try[Int] = Try(/* 예외를 던질 수도 있는 코드 */ 42) // Success(42)
+  val anAttempt: Try[Int] = Try( /* 예외를 던질 수도 있는 코드 */ 42) // Success(42)
   val aModifiedAttempt: Try[Int] = anAttempt.map(_ * 10)
 
   // 패턴 매칭
@@ -74,11 +75,12 @@ object Essentials {
 
   val optionDescription: String = anOption match {
     case Some(value) => s"the option is not empty: $value"
-    case None => "the option is empty"
+    case None        => "the option is empty"
   }
 
   // Future
-  implicit val ec: ExecutionContext = ExecutionContext.fromExecutorService(Executors.newFixedThreadPool(8))
+  implicit val ec: ExecutionContext =
+    ExecutionContext.fromExecutorService(Executors.newFixedThreadPool(8))
   val aFuture = Future {
     // 실행할 코드
     42
@@ -86,7 +88,7 @@ object Essentials {
 
   // 완료될 때까지 비동기적으로 기다림
   aFuture.onComplete {
-    case Success(value) => println(s"The async meaning of life is $value")
+    case Success(value)     => println(s"The async meaning of life is $value")
     case Failure(exception) => println(s"Meaning of value failed: $exception")
   }
 
@@ -95,8 +97,8 @@ object Essentials {
 
   // 부분 함수: 패턴과 일치하지 않으면 매칭 오류 발생
   val aPartialFunction: PartialFunction[Int, Int] = {
-    case 1 => 43
-    case 8 => 56
+    case 1   => 43
+    case 8   => 56
     case 100 => 999
   }
 
