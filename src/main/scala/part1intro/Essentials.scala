@@ -1,5 +1,5 @@
 //noinspection TypeAnnotation,ScalaWeakerAccess
-package part1recap
+package part1intro
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Try

@@ -1,5 +1,5 @@
 //noinspection ScalaWeakerAccess
-package part1recap
+package part1intro
 
 object TypeClasses {
 

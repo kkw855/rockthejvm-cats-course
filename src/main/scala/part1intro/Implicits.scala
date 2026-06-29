@@ -1,5 +1,5 @@
 //noinspection ScalaWeakerAccess,TypeAnnotation,ConvertExpressionToSAM
-package part1recap
+package part1intro
 
 object Implicits {
 
